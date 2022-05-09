@@ -14,6 +14,7 @@ public class DBManager {
         allitems.add(new Item(4L,"iPhone 13 Pro Max", 1800));
         allitems.add(new Item(5L,"iPhone 12", 1000));
     }
+
     public static void addItem(Item item){
         item.setId(id);
         allitems.add(item);

@@ -19,7 +19,6 @@ public class HomeServlet extends HttpServlet {
         ArrayList<Item> allitems = DBManager.getAllitems();
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
-        out.println("<h1>Good Luck!</h1>");
         out.println("<table cellpadding = '20px'>");
         out.println("<thead>");
         out.println("<tr><th>ID</th><th>NAME</th><th>PRICE</th></tr>");
