@@ -19,6 +19,44 @@ public class HomeServlet extends HttpServlet {
         ArrayList<Item> allitems = DBManager.getAllitems();
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
+
+        out.println("<h3>");
+        out.println("First Task");
+        out.println("</h3>");
+
+        out.println("<form action = '/first_task' method = 'get'>");
+        out.println("<label>");
+        out.println("Name: ");
+        out.println("</label>");
+        out.println("<input type='text' name = 'user_name'>");
+        out.println("<label>");
+        out.println("Surname: ");
+        out.println("<input type='text' name = 'user_surname'>");
+        out.println("</label>");
+        out.println("<label>");
+        out.println("Food: ");
+        out.println("</label>");
+        out.println("<select name = 'food'>");
+        out.println("<option>");
+        out.println("Burger");
+        out.println("</option>");
+        out.println("<option>");
+        out.println("Pizza");
+        out.println("</option>");
+        out.println("<option>");
+        out.println("Hot dog");
+        out.println("</option>");
+        out.println("</select>");
+        out.println("<button>");
+        out.println("ORDER FOOD");
+        out.println("</button>");
+        out.println("</form>");
+
+        out.println("<br>");
+        out.println("<br>");
+        out.println("<br>");
+
+
         out.println("<table cellpadding = '20px'>");
         out.println("<thead>");
         out.println("<tr><th>ID</th><th>NAME</th><th>PRICE</th></tr>");
