@@ -124,11 +124,11 @@ public class HomeServlet extends HttpServlet {
         out.println("<form action = '/secondTask' method = 'get'>");
         out.println("FULL NAME: <input type = 'text' placeholder = 'Insert full name' name = 'user_name'>");
         out.println("AGE: <input type = 'text' placeholder = 'Insert age' name = 'user_age'>");
-        out.println("GENDER : <input type = 'radio' name = 'gender_type'>");
+        out.println("GENDER : <input type = 'radio' name = 'gender_type' value = 'male'>");
         out.println("<label>");
         out.println("Male  ");
         out.println("</label>");
-        out.println("<input type = 'radio' name = 'gender_type'>");
+        out.println("<input type = 'radio' name = 'gender_type' value = 'female'>");
         out.println("<label>");
         out.println("Female");
         out.println("</label>");

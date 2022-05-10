@@ -26,7 +26,14 @@ public class SecondMainServlet extends HttpServlet {
         Integer age = Integer.parseInt(req.getParameter("user_age"));
         String gender = req.getParameter("gender_type");
 
-        out.println(name + " " + age + " " + gender);
-
+        if (gender.equals("male") && age >= 18) {
+            out.println("Hello Dear Mister " + name);
+        }else if (gender.equals("male") && age < 18){
+            out.println("Hello Dude Mister " + name);
+        }else if (gender.equals("female") && age >= 18){
+            out.println("Hello Dear Miss " + name);
+        }else if (gender.equals("female") && age < 18){
+            out.println("Hello Dude Miss " + name);
+        }
     }
 }
