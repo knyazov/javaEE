@@ -1,4 +1,4 @@
-package Chapter1Task2.servlets;
+package servlets;
 
 
 import javax.servlet.ServletException;
@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(value = "/secondMain")
+@WebServlet(value = "/secondTask")
 public class SecondMainServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -20,9 +20,13 @@ public class SecondMainServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         resp.setContentType("text/html");
-        PrintWriter pw = resp.getWriter();
-        pw.println("<form action = '' method = 'get'>");
-        pw.println("FULL NAME: <input type = 'text' placeholder = 'name'>");
-        pw.println("</form>");
+        PrintWriter out = resp.getWriter();
+
+        String name = req.getParameter("user_name");
+        Integer age = Integer.parseInt(req.getParameter("user_age"));
+        String gender = req.getParameter("gender_type");
+
+        out.println(name + " " + age + " " + gender);
+
     }
 }

@@ -19,6 +19,8 @@ public class HomeServlet extends HttpServlet {
         ArrayList<Item> allitems = DBManager.getAllitems();
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
+        out.println("<link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3\" crossorigin=\"anonymous\">");
+        out.println("<div class = 'container'>");
 
         out.println("<h3>");
         out.println("First Task");
@@ -56,8 +58,31 @@ public class HomeServlet extends HttpServlet {
         out.println("<br>");
         out.println("<br>");
 
+        out.println("<h3>");
+        out.println("Second Task");
+        out.println("</h3>");
 
-        out.println("<table cellpadding = '20px'>");
+        out.println("<form action = '/secondTask' method = 'get'>");
+        out.println("FULL NAME: <input type = 'text' placeholder = 'Insert full name' name = 'user_name'>");
+        out.println("AGE: <input type = 'text' placeholder = 'Insert age' name = 'user_age'>");
+        out.println("GENDER : <input type = 'radio' name = 'gender_type'>");
+        out.println("<label>");
+        out.println("Male  ");
+        out.println("</label>");
+        out.println("<input type = 'radio' name = 'gender_type'>");
+        out.println("<label>");
+        out.println("Female");
+        out.println("</label>");
+        out.println("<button>");
+        out.println("SUBMIT");
+        out.println("</button>");
+        out.println("</form>");
+
+        out.println("<br>");
+        out.println("<br>");
+        out.println("<br>");
+
+        out.println("<table cellpadding = '20px' class='table table-striped'>");
         out.println("<thead>");
         out.println("<tr><th>ID</th><th>NAME</th><th>PRICE</th></tr>");
         out.println("</thead>");
@@ -74,6 +99,7 @@ public class HomeServlet extends HttpServlet {
 
         out.println("</tbody>");
         out.println("</table");
+        out.println("</div>");
     }
 
     @Override
