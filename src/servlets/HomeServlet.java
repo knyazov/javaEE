@@ -1,6 +1,7 @@
 package servlets;
 
 import DBManager.DBManager;
+import Footballer.Footballer;
 import Item.Item;
 
 import javax.servlet.ServletException;
@@ -54,6 +55,63 @@ public class HomeServlet extends HttpServlet {
         out.println("</button>");
         out.println("</form>");
 
+
+
+        out.println("<br>");
+        out.println("<br>");
+        out.println("<br>");
+
+        out.println("<h3>");
+        out.println("Third Task");
+        out.println("</h3>");
+
+        out.println("<br>");
+        out.println("<br>");
+        out.println("<br>");
+        out.println("<form action = '/third' method = 'post'>");
+        out.println("Name: <input type = 'text' name = 'f_name'>");
+        out.println("Surname: <input type = 'text' name = 'f_surname'>");
+        out.println("Club: <select name = 'c_name'>");
+        out.println("<option>");
+        out.println("Man City");
+        out.println("</option>");
+        out.println("<option>");
+        out.println("Man UTD");
+        out.println("</option>");
+        out.println("<option>");
+        out.println("Liverpool");
+        out.println("</option>");
+        out.println("</select>");
+        out.println("Salary: <input type = 'text' name = 'f_salary'>");
+        out.println("Transfer price: <input type = 'text' name = 'f_price'>");
+        out.println("<button>");
+        out.println("Add footballer");
+        out.println("</button>");
+        out.println("</form>");
+        out.println("<br>");
+        out.println("<br>");
+        out.println("<br>");
+        out.println("<table cellpadding = '20px' class='table table-striped'>");
+        out.println("<thead>");
+        out.println("<tr><th>ID</th><th>NAME</th><th>Surname</th><th>Salary</th><th>Club</th><th>TransferPrice</th></tr>");
+        out.println("</thead>");
+        out.println("<tbody>");
+        ArrayList<Footballer> getFootballers = DBManager.getFootballers();
+        for (Footballer it: getFootballers) {
+            out.println("<tr>");
+            out.println("<td>" + it.getId() + "</td>");
+            out.println("<td>" + it.getName() + "</td>");
+            out.println("<td>" + it.getSurname() + "</td>");
+            out.println("<td>" + it.getSalary() + "</td>");
+            out.println("<td>" + it.getClub() + "</td>");
+            out.println("<td>" + it.getTransferPrice() + "</td>");
+
+            out.println("</tr>");
+        }
+
+        out.println("</tbody>");
+        out.println("</table");
+
         out.println("<br>");
         out.println("<br>");
         out.println("<br>");
@@ -61,6 +119,7 @@ public class HomeServlet extends HttpServlet {
         out.println("<h3>");
         out.println("Second Task");
         out.println("</h3>");
+
 
         out.println("<form action = '/secondTask' method = 'get'>");
         out.println("FULL NAME: <input type = 'text' placeholder = 'Insert full name' name = 'user_name'>");

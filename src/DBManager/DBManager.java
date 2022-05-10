@@ -1,5 +1,6 @@
 package DBManager;
 
+import Footballer.Footballer;
 import Item.Item;
 
 import java.util.ArrayList;
@@ -23,5 +24,24 @@ public class DBManager {
 
     public static ArrayList<Item> getAllitems(){
         return allitems;
+    }
+    private static ArrayList<Footballer> allfootballers = new ArrayList<Footballer>();
+
+    static {
+        allfootballers.add(new Footballer(1L, "Mbappe", "Kilian", 600000, "PSG", 70000000));
+        allfootballers.add(new Footballer(2L, "Pele", "Senior", 7000000, "Brazil", 90000000));
+        allfootballers.add(new Footballer(3L, "Messi", "Leo", 600000, "PSG", 950000000));
+        allfootballers.add(new Footballer(4L, "Cristiano", "Ronaldo", 600000, "Man UTD", 80000000));
+        allfootballers.add(new Footballer(5L, "Cristiano", "Ronaldo", 600000, "Man UTD", 80000000));
+    }
+
+    public static void addFootballer(Footballer footballer){
+        footballer.setId(id);
+        allfootballers.add(footballer);
+        id++;
+    }
+
+    public static ArrayList<Footballer> getFootballers(){
+        return allfootballers;
     }
 }
