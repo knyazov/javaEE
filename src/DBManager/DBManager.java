@@ -2,7 +2,10 @@ package DBManager;
 
 import Footballer.Footballer;
 import Item.Item;
+import Item.News;
+import Item.Students;
 
+import java.sql.*;
 import java.util.ArrayList;
 
 public class DBManager {
@@ -57,4 +60,97 @@ public class DBManager {
         return null;
     }
 
+    private static ArrayList<News> allnews = new ArrayList<News>();
+
+    static {
+        allnews.add(new News("The crazy way", "Last friday Disney", "Adam Holmes", "culture"));
+        allnews.add(new News("GGG vs Canelo", "on Monte carlo", "tmt", "sport"));
+        allnews.add(new News("Real Madrid vs Liverpool", "on May", "Howard Webb", "sport"));
+        allnews.add(new News("Doctor Strange", "Last friday Disney", "Sam Rimey", "cinema"));
+        allnews.add(new News("Spider Man", "MJ Watson Toby Mcguire", "Adam Holmes", "cinema"));
+    }
+
+
+    protected static Connection connection;
+
+    static {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaee_db?useUnicode=true&serverTimezone=UTC", "root", "");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static boolean addStudent(Students students){
+        int rows = 0;
+        try{
+            PreparedStatement statement = connection.prepareStatement("" +
+                    "INSERT into students " +
+                    "VALUES (NULL , ?, ?, ?, ?)");
+            statement.setString(1, students.getName());
+            statement.setString(2, students.getSurname());
+            statement.setDate(3, (Date) students.getBirth_date());
+            statement.setString(4, students.getCity());
+
+            rows = statement.executeUpdate();
+            statement.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return rows>0;
+    }
+
+    public static ArrayList<Students> getStudent(){
+        ArrayList<Students> students = new ArrayList<Students>();
+
+        try {
+            PreparedStatement statement = connection.prepareStatement("" +
+                    "SELECT * from STUDENTS");
+
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()){
+                students.add(new Students(
+                        resultSet.getLong("id"),
+                        resultSet.getString("name"),
+                        resultSet.getString("surname"),
+                        resultSet.getDate("birth_date"),
+                        resultSet.getString("city")
+                ));
+
+            }
+            statement.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return students;
+    }
+
+    public static Students getStudent(Long id){
+        Students student = null;
+        try {
+            PreparedStatement statement = connection.prepareStatement("" +
+                    "SELECT * from STUDENTS where id = ? LIMIT 1");
+
+            statement.setLong(1, id);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()){
+                student = new Students(
+                        resultSet.getLong("id"),
+                        resultSet.getString("name"),
+                        resultSet.getString("surname"),
+                        resultSet.getDate("birth_date"),
+                        resultSet.getString("city")
+                );
+
+            }
+            statement.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return student;
+    }
 }
