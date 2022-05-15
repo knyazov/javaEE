@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -24,12 +25,7 @@ public class AddStudentServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String name = req.getParameter("name");
         String surname = req.getParameter("surname");
-        Date date = null;
-        try {
-            date = new SimpleDateFormat("dd/MM/yyyy").parse(req.getParameter("date"));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        String date = req.getParameter("date");
         String city = req.getParameter("city");
 
         Students student = new Students(null, name, surname, date, city);

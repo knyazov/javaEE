@@ -6,13 +6,13 @@ public class Students {
     private Long id;
     private String name;
     private String surname;
-    private Date birth_date;
+    private String birth_date;
     private String city;
 
     public Students() {
     }
 
-    public Students(Long id, String name, String surname, Date birth_date, String city) {
+    public Students(Long id, String name, String surname, String birth_date, String city) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -44,11 +44,11 @@ public class Students {
         this.surname = surname;
     }
 
-    public Date getBirth_date() {
+    public String getBirth_date() {
         return birth_date;
     }
 
-    public void setBirth_date(Date birth_date) {
+    public void setBirth_date(String birth_date) {
         this.birth_date = birth_date;
     }
 

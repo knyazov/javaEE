@@ -87,10 +87,12 @@ public class DBManager {
         try{
             PreparedStatement statement = connection.prepareStatement("" +
                     "INSERT INTO students (id, name, surname, birth_date, city)" +
-                    "VALUES (NULL , ?, ?, ?, ?)");
+                    "VALUES (NULL , ?, ?, ?, ?)" +
+                    "");
+
             statement.setString(1, students.getName());
             statement.setString(2, students.getSurname());
-            statement.setDate(3, (Date) students.getBirth_date());
+            statement.setString(3, students.getBirth_date());
             statement.setString(4, students.getCity());
 
             rows = statement.executeUpdate();
@@ -106,7 +108,9 @@ public class DBManager {
 
         try {
             PreparedStatement statement = connection.prepareStatement("" +
-                    "SELECT * from STUDENTS");
+                    "SELECT id, name, surname, birth_date, city " +
+                    "FROM STUDENTS");
+
 
             ResultSet resultSet = statement.executeQuery();
 
@@ -115,7 +119,7 @@ public class DBManager {
                         resultSet.getLong("id"),
                         resultSet.getString("name"),
                         resultSet.getString("surname"),
-                        resultSet.getDate("birth_date"),
+                        resultSet.getString("birth_date"),
                         resultSet.getString("city")
                 ));
 
@@ -131,7 +135,8 @@ public class DBManager {
         Students student = null;
         try {
             PreparedStatement statement = connection.prepareStatement("" +
-                    "SELECT * from STUDENTS where id = ? LIMIT 1");
+                    "SELECT id, name, surname, birth_date, city " +
+                    "from STUDENTS where id = ? LIMIT 1");
 
             statement.setLong(1, id);
 
@@ -142,7 +147,7 @@ public class DBManager {
                         resultSet.getLong("id"),
                         resultSet.getString("name"),
                         resultSet.getString("surname"),
-                        resultSet.getDate("birth_date"),
+                        resultSet.getString("birth_date"),
                         resultSet.getString("city")
                 );
 

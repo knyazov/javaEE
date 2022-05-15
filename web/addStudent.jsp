@@ -22,7 +22,7 @@
 
             <%
                 String success = request.getParameter("success");
-                if (success!=null){
+                if (success != null) {
             %>
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 Student added successfully
@@ -36,17 +36,21 @@
                 <div class="form-group">
                     <label> NAME: </label>
                     <input type="text" name="name" class="form-control">
-                </div><div class="form-group">
+                </div>
+                <div class="form-group">
                     <label> SURNAME: </label>
                     <input type="text" name="surname" class="form-control">
-                </div><div class="form-group">
+                </div>
+                <div class="form-group">
                     <label> BIRTH DATE: </label>
                     <input type="date" name="date" class="form-control">
-                </div><div class="form-group">
+                </div>
+                <div class="form-group">
                     <label> CITY: </label>
                     <input type="text" name="city" class="form-control">
-                </div><div class="form-group">
-                <button class="btn btn-success" >ADD STUDENT</button>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-success">ADD STUDENT</button>
                 </div>
             </form>
         </div>
