@@ -17,6 +17,7 @@
 <body>
 <div class="container">
     <div class="row mt-5">
+        <%@include file="vendor/navber_students.jsp"%>
         <div class="col-sm-12">
             <table class="table table-striped table-hover">
                 <thead>
@@ -31,7 +32,7 @@
                 </thead>
                 <tbody>
                 <%
-                    ArrayList<Students> students = (ArrayList<Students>) request.getAttribute("students");
+                    ArrayList<Students> students = (ArrayList<Students>) request.getAttribute("student");
 
                     if (students != null) {
                         for (Students student :
@@ -66,9 +67,7 @@
                     </td>
 
                     <td>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="button" autocomplete="off">
-                            <a href="/details_student?id=<%=student.getId()%>" style="color: aliceblue"> details </a>
-                        </button>
+                        <a href="/details_student?id=<%=student.getId()%>" style="color: aliceblue" class="btn btn-info btn-sm"> details </a>
                     </td>
                 </tr>
                 <%

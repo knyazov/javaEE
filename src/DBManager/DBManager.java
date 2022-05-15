@@ -86,7 +86,7 @@ public class DBManager {
         int rows = 0;
         try{
             PreparedStatement statement = connection.prepareStatement("" +
-                    "INSERT into students " +
+                    "INSERT INTO students (id, name, surname, birth_date, city)" +
                     "VALUES (NULL , ?, ?, ?, ?)");
             statement.setString(1, students.getName());
             statement.setString(2, students.getSurname());

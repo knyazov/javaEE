@@ -22,13 +22,14 @@ public class StudentsDetailsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         Long id = Long.parseLong(req.getParameter("id"));
-        Students students = DBManager.getStudent(id);
+        Students student = DBManager.getStudent(id);
 
-        if (students!=null){
-            req.getRequestDispatcher("/details.jsp").forward(req,resp);
+        if (student!=null){
+            req.setAttribute("student", student);
+            req.getRequestDispatcher("/details_student.jsp").forward(req,resp);
         }
         else {
-            req.getRequestDispatcher("404.jsp").forward(req,resp);
+            req.getRequestDispatcher("/404.jsp").forward(req,resp);
         }
 
     }

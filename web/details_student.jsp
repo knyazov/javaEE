@@ -44,7 +44,7 @@
                     <p class="card-text"><%=
                     student.getCity()
                     %></p>
-                    <a href="/students.jsp" class="btn btn-primary">back</a>
+                    <a href="/" class="btn btn-primary">back</a>
                 </div>
             </div>
             <%
