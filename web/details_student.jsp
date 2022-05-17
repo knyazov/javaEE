@@ -44,7 +44,11 @@
                     <p class="card-text"><%=
                     student.getCity()
                     %></p>
-                    <a href="/" class="btn btn-primary">back</a>
+                    <div class="col-sm-2 mr-3">
+                        <a href="/" class="btn btn-primary">back</a>
+                    </div><div class="col-sm-2 ml-3">
+                        <a href="/editStudent?id=<%=student.getId()%>" class="btn btn-primary">edit</a>
+                    </div>
                 </div>
             </div>
             <%

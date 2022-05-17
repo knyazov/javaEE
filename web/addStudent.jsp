@@ -49,7 +49,7 @@
                     <label> CITY: </label>
                     <input type="text" name="city" class="form-control">
                 </div>
-                <div class="form-group">
+                <div class="form-group mt-2">
                     <button class="btn btn-success">ADD STUDENT</button>
                 </div>
             </form>

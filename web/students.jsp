@@ -17,7 +17,7 @@
 <body>
 <div class="container">
     <div class="row mt-5">
-        <%@include file="vendor/navber_students.jsp"%>
+        <%@include file="vendor/navber_students.jsp" %>
         <div class="col-sm-12">
             <table class="table table-striped table-hover">
                 <thead>
@@ -65,9 +65,9 @@
                         student.getCity()
                         %>
                     </td>
-
                     <td>
-                        <a href="/details_student?id=<%=student.getId()%>" style="color: aliceblue" class="btn btn-info btn-sm"> details </a>
+                        <a href="/details_student?id=<%=student.getId()%>" style="color: aliceblue"
+                           class="btn btn-info btn-sm"> details </a>
                     </td>
                 </tr>
                 <%

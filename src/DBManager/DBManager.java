@@ -158,4 +158,29 @@ public class DBManager {
         }
         return student;
     }
+
+    public static boolean editStudent(Students students){
+        int row = 0;
+
+        try{
+            PreparedStatement statement = connection.prepareStatement("" +
+                    "UPDATE students SET name = ?, surname = ?, birth_date = ?, city = ?" +
+                    "WHERE id = ?" +
+                    "");
+
+            statement.setString(1, students.getName());
+            statement.setString(2, students.getSurname());
+            statement.setString(3, students.getBirth_date());
+            statement.setString(4, students.getCity());
+            statement.setLong(5, students.getId());
+
+
+            row = statement.executeUpdate();
+            statement.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return row>0;
+    }
 }

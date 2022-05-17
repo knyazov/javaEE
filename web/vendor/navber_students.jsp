@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg " style="background-color: #8a0428; color: white">
-    <div class="container-fluid" style="color: aliceblue">
+    <div class="container-fluid" style="color: white">
         <a class="navbar-brand" href="/">Student management system</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
