@@ -60,16 +60,6 @@ public class DBManager {
         return null;
     }
 
-    private static ArrayList<News> allnews = new ArrayList<News>();
-
-    static {
-        allnews.add(new News("The crazy way", "Last friday Disney", "Adam Holmes", "culture"));
-        allnews.add(new News("GGG vs Canelo", "on Monte carlo", "tmt", "sport"));
-        allnews.add(new News("Real Madrid vs Liverpool", "on May", "Howard Webb", "sport"));
-        allnews.add(new News("Doctor Strange", "Last friday Disney", "Sam Rimey", "cinema"));
-        allnews.add(new News("Spider Man", "MJ Watson Toby Mcguire", "Adam Holmes", "cinema"));
-    }
-
 
     protected static Connection connection;
 
@@ -82,9 +72,9 @@ public class DBManager {
         }
     }
 
-    public static boolean addStudent(Students students){
+    public static boolean addStudent(Students students) {
         int rows = 0;
-        try{
+        try {
             PreparedStatement statement = connection.prepareStatement("" +
                     "INSERT INTO students (id, name, surname, birth_date, city)" +
                     "VALUES (NULL , ?, ?, ?, ?)" +
@@ -97,13 +87,13 @@ public class DBManager {
 
             rows = statement.executeUpdate();
             statement.close();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        return rows>0;
+        return rows > 0;
     }
 
-    public static ArrayList<Students> getStudent(){
+    public static ArrayList<Students> getStudent() {
         ArrayList<Students> students = new ArrayList<Students>();
 
         try {
@@ -114,7 +104,7 @@ public class DBManager {
 
             ResultSet resultSet = statement.executeQuery();
 
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 students.add(new Students(
                         resultSet.getLong("id"),
                         resultSet.getString("name"),
@@ -125,13 +115,13 @@ public class DBManager {
 
             }
             statement.close();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return students;
     }
 
-    public static Students getStudent(Long id){
+    public static Students getStudent(Long id) {
         Students student = null;
         try {
             PreparedStatement statement = connection.prepareStatement("" +
@@ -142,7 +132,7 @@ public class DBManager {
 
             ResultSet resultSet = statement.executeQuery();
 
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 student = new Students(
                         resultSet.getLong("id"),
                         resultSet.getString("name"),
@@ -153,16 +143,16 @@ public class DBManager {
 
             }
             statement.close();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return student;
     }
 
-    public static boolean editStudent(Students students){
+    public static boolean editStudent(Students students) {
         int row = 0;
 
-        try{
+        try {
             PreparedStatement statement = connection.prepareStatement("" +
                     "UPDATE students SET name = ?, surname = ?, birth_date = ?, city = ?" +
                     "WHERE id = ?" +
@@ -177,10 +167,62 @@ public class DBManager {
 
             row = statement.executeUpdate();
             statement.close();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return row>0;
+        return row > 0;
+    }
+
+
+    public static ArrayList<News> getNews() {
+        ArrayList<News> news = new ArrayList<>();
+
+        try {
+            PreparedStatement statement = connection.prepareStatement("" +
+                    "SELECT id, header, content, author, type " +
+                    "FROM news" +
+                    "");
+
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                news.add(new News(
+                        resultSet.getLong("id"),
+                        resultSet.getString("header"),
+                        resultSet.getString("content"),
+                        resultSet.getString("author"),
+                        resultSet.getString("type")
+                ));
+                statement.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        return news;
+    }
+
+    public static boolean addNews(News news) {
+        int rows = 0;
+        try {
+            PreparedStatement statement = connection.prepareStatement("" +
+                    "INSERT INTO news (id, header, content, author, type)" +
+                    "VALUES (NULL, ?, ?, ?, ?)" +
+                    "");
+
+            statement.setString(1, news.getHeader());
+            statement.setString(2, news.getContent());
+            statement.setString(3, news.getAuthor());
+            statement.setString(4, news.getType());
+
+            rows = statement.executeUpdate();
+            statement.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return rows > 0;
     }
 }
