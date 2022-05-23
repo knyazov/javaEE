@@ -1,6 +1,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="Footballer.Footballer" %>
-<%@ page import="Item.*" %><%--
+<%@ page import="Item.Students" %>
+<%@ page import="Item.Countries" %><%--
   Created by IntelliJ IDEA.
   User: Akzhol
   Date: 11.05.2022
@@ -24,55 +25,38 @@
                 <tr>
                     <th>ID</th>
                     <th>NAME</th>
-                    <th>SURNAME</th>
-                    <th>BIRTHDAY DATE</th>
-                    <th>CITY</th>
-                    <th>COUNTRY</th>
-                    <th>INFO</th>
+                    <th>CODE</th>
+                    <th>DETAILS</th>
                 </tr>
                 </thead>
                 <tbody>
                 <%
-                    ArrayList<Students> students = (ArrayList<Students>) request.getAttribute("student");
+                    ArrayList<Countries> cities = (ArrayList<Countries>) request.getAttribute("cities");
 
-                    if (students != null) {
-                        for (Students student :
-                                students) {
+                    if (cities != null) {
+                        for (Countries city :
+                                cities) {
 
                 %>
                 <tr>
                     <td>
                         <%
-                            out.println(student.getId());
+                            out.println(city.getId());
                         %>
                     </td>
                     <td>
                         <%=
-                        student.getName()
+                        city.getName()
                         %>
                     </td>
                     <td>
                         <%=
-                        student.getSurname()
+                        city.getCode()
                         %>
                     </td>
+
                     <td>
-                        <%=
-                        student.getBirth_date()
-                        %>
-                    </td>
-                    <td>
-                        <%=
-                        student.getCity()
-                        %>
-                    </td>
-                    <td>
-                        <%=
-                        student.getCountry().getName() + " / " + student.getCountry().getCode()
-                        %>
-                    </td>
-                    <td>
-                        <a href="/details_student?id=<%=student.getId()%>" style="color: aliceblue"
+                        <a href="/details_student?id=<%=city.getId()%>" style="color: aliceblue"
                            class="btn btn-info btn-sm"> details </a>
                     </td>
                 </tr>

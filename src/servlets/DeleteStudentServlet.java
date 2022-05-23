@@ -10,30 +10,34 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-
-@WebServlet(value = "/details_student")
-public class StudentsDetailsServlet extends HttpServlet {
+@WebServlet(value = "/deleteStudent")
+public class DeleteStudentServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         try {
             Long id = Long.parseLong(req.getParameter("id"));
             Students student = DBManager.getStudent(id);
 
             if (student != null) {
-                req.setAttribute("student", student);
-                req.getRequestDispatcher("/details_student.jsp").forward(req, resp);
+                if (DBManager.deleteStudent(student)) {
+                    resp.sendRedirect("/");
+                } else {
+                    resp.sendRedirect("/editStudent?id=" + id + "&wrong");
+                }
             } else {
-                req.getRequestDispatcher("/404.jsp").forward(req, resp);
+                resp.sendRedirect("/");
             }
+
         } catch (Exception e) {
             e.printStackTrace();
-            req.getRequestDispatcher("/404.jsp").forward(req, resp);
+            resp.sendRedirect("/404.jsp");
         }
+
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
     }
 }

@@ -1,23 +1,24 @@
 package Item;
 
-import java.util.Date;
-
 public class Students {
     private Long id;
     private String name;
     private String surname;
     private String birth_date;
     private String city;
+    private Countries country;
+
 
     public Students() {
     }
 
-    public Students(Long id, String name, String surname, String birth_date, String city) {
+    public Students(Long id, String name, String surname, String birth_date, String city, Countries country) {
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.birth_date = birth_date;
         this.city = city;
+        this.country = country;
     }
 
     public Long getId() {
@@ -58,5 +59,13 @@ public class Students {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public Countries getCountry() {
+        return country;
+    }
+
+    public void setCountry(Countries country) {
+        this.country = country;
     }
 }

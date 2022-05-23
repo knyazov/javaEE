@@ -23,8 +23,6 @@
             if (news != null) {
                 for (News newss :
                         news) {
-
-
         %>
 
         <ul class="row d-lg-flex list-unstyled image-block justify-content-center px-lg-0 mx-lg-0">

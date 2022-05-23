@@ -1,9 +1,7 @@
 package DBManager;
 
 import Footballer.Footballer;
-import Item.Item;
-import Item.News;
-import Item.Students;
+import Item.*;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -76,14 +74,15 @@ public class DBManager {
         int rows = 0;
         try {
             PreparedStatement statement = connection.prepareStatement("" +
-                    "INSERT INTO students (id, name, surname, birth_date, city)" +
-                    "VALUES (NULL , ?, ?, ?, ?)" +
+                    "INSERT INTO students (id, name, surname, birth_date, city, country_id)" +
+                    "VALUES (NULL , ?, ?, ?, ?, ?)" +
                     "");
 
             statement.setString(1, students.getName());
             statement.setString(2, students.getSurname());
             statement.setString(3, students.getBirth_date());
             statement.setString(4, students.getCity());
+            statement.setLong(5, students.getCountry().getId());
 
             rows = statement.executeUpdate();
             statement.close();
@@ -94,12 +93,12 @@ public class DBManager {
     }
 
     public static ArrayList<Students> getStudent() {
-        ArrayList<Students> students = new ArrayList<Students>();
+        ArrayList<Students> students = new ArrayList<>();
 
         try {
-            PreparedStatement statement = connection.prepareStatement("" +
-                    "SELECT id, name, surname, birth_date, city " +
-                    "FROM STUDENTS");
+            PreparedStatement statement = connection.prepareStatement("SELECT s.id, s.name, s.surname, s.birth_date, s.city, s.country_id, c.name AS countryName, c.code " +
+                    "FROM students s " +
+                    "INNER JOIN countries c ON s.country_id = c.id");
 
 
             ResultSet resultSet = statement.executeQuery();
@@ -110,7 +109,12 @@ public class DBManager {
                         resultSet.getString("name"),
                         resultSet.getString("surname"),
                         resultSet.getString("birth_date"),
-                        resultSet.getString("city")
+                        resultSet.getString("city"),
+                        new Countries(
+                                resultSet.getLong("country_id"),
+                                resultSet.getString("countryName"),
+                                resultSet.getString("code")
+                        )
                 ));
 
             }
@@ -125,8 +129,10 @@ public class DBManager {
         Students student = null;
         try {
             PreparedStatement statement = connection.prepareStatement("" +
-                    "SELECT id, name, surname, birth_date, city " +
-                    "from STUDENTS where id = ? LIMIT 1");
+                    "SELECT s.id, s.name, s.surname, s.birth_date, s.city, s.country_id, c.name AS countryName, c.code" +
+                    "FROM students s" +
+                    "INNER JOIN countries c ON s.country_id = c.id" +
+                    "where id = ? LIMIT 1");
 
             statement.setLong(1, id);
 
@@ -138,7 +144,12 @@ public class DBManager {
                         resultSet.getString("name"),
                         resultSet.getString("surname"),
                         resultSet.getString("birth_date"),
-                        resultSet.getString("city")
+                        resultSet.getString("city"),
+                        new Countries(
+                                resultSet.getLong("country_id"),
+                                resultSet.getString("countryName"),
+                                resultSet.getString("code")
+                        )
                 );
 
             }
@@ -154,7 +165,7 @@ public class DBManager {
 
         try {
             PreparedStatement statement = connection.prepareStatement("" +
-                    "UPDATE students SET name = ?, surname = ?, birth_date = ?, city = ?" +
+                    "UPDATE students SET name = ?, surname = ?, birth_date = ?, city = ?, country_id = ?" +
                     "WHERE id = ?" +
                     "");
 
@@ -162,7 +173,8 @@ public class DBManager {
             statement.setString(2, students.getSurname());
             statement.setString(3, students.getBirth_date());
             statement.setString(4, students.getCity());
-            statement.setLong(5, students.getId());
+            statement.setLong(5,students.getCountry().getId());
+            statement.setLong(6, students.getId());
 
 
             row = statement.executeUpdate();
@@ -174,6 +186,22 @@ public class DBManager {
         return row > 0;
     }
 
+    public static boolean deleteStudent(Students students) {
+        int rows = 0;
+        try {
+            PreparedStatement statement = connection.prepareStatement("" +
+                    "DELETE FROM students WHERE id = ?" +
+                    "");
+
+            statement.setLong(1,students.getId());
+
+            rows = statement.executeUpdate();
+            statement.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return rows > 0;
+    }
 
     public static ArrayList<News> getNews() {
         ArrayList<News> news = new ArrayList<>();
@@ -224,5 +252,58 @@ public class DBManager {
             e.printStackTrace();
         }
         return rows > 0;
+    }
+
+    public static ArrayList<Countries> getCountries(){
+        ArrayList<Countries> countries = new ArrayList<>();
+
+        try {
+
+            PreparedStatement statement = connection.prepareStatement("" +
+                    "SELECT * FROM countries" +
+                    "");
+
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()){
+                countries.add(new Countries(
+                resultSet.getLong("id"),
+                resultSet.getString("name"),
+                resultSet.getString("code")
+                ));
+            }
+            statement.close();
+
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return countries;
+    }
+
+    public static Countries getCountry(Long id){
+        Countries countries = null;
+
+        try {
+            PreparedStatement statement = connection.prepareStatement("" +
+                    "SELECT * FROM countries WHERE id = ? LIMIT 1" +
+                    "");
+            statement.setLong(1, id);
+            ResultSet resultSet = statement.executeQuery();
+
+        if (resultSet.next()){
+            countries = new Countries(
+              resultSet.getLong("id"),
+              resultSet.getString("name"),
+              resultSet.getString("code")
+            );
+        }
+        statement.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return countries;
     }
 }

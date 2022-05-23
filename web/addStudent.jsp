@@ -1,6 +1,8 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="Footballer.Footballer" %>
-<%@ page import="Item.Students" %><%--
+<%@ page import="Item.Students" %>
+<%@ page import="Item.Countries" %>
+<%@ page import="DBManager.DBManager" %><%--
   Created by IntelliJ IDEA.
   User: Akzhol
   Date: 11.05.2022
@@ -48,6 +50,26 @@
                 <div class="form-group">
                     <label> CITY: </label>
                     <input type="text" name="city" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label> COUNTRY: </label>
+                    <select name="country_id" class="form-control" id="">
+
+                        <%
+                            ArrayList<Countries> countries = DBManager.getCountries();
+                            if (countries != null) {
+                                for (Countries country :
+                                        countries) {
+                        %>
+                        <option value="<%=country.getId()%>">
+                            <%=country.getName() + " / " + country.getCode()%>
+                        </option>
+                        <%
+                                }
+                            }
+                        %>
+
+                    </select>
                 </div>
                 <div class="form-group mt-2">
                     <button class="btn btn-success">ADD STUDENT</button>
