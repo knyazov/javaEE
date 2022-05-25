@@ -13,8 +13,14 @@
                     <a class="nav-link" href="/citiesStudents" style="color: white">Cities</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" style="color: white">Pricing</a>
+                    <a class="nav-link" href="/cookiesStudents" style="color: white">Cookies</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/siteNameCookie" style="color: white">Site Name Cookies</a>
+                </li><li class="nav-item">
+                    <a class="nav-link" href="/cookiesSecondTask" style="color: white">TASK 2 of COOKIES</a>
+                </li>
+
             </ul>
             <span class="navbar-text">
         Navbar text with an inline element
