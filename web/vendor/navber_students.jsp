@@ -12,14 +12,22 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/citiesStudents" style="color: white">Cities</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/cookiesStudents" style="color: white">Cookies</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white">
+                        Cookie
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/cookiesStudents" style="color: black">Cookies</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/siteNameCookie" style="color: black">Site Name Cookies</a>
+                        </li><li class="nav-item">
+                        <a class="nav-link" href="/cookiesSecondTask" style="color: black">TASK 2 of COOKIES</a>
+                    </li>
+                    </ul>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/siteNameCookie" style="color: white">Site Name Cookies</a>
-                </li><li class="nav-item">
-                    <a class="nav-link" href="/cookiesSecondTask" style="color: white">TASK 2 of COOKIES</a>
-                </li>
+
 
             </ul>
             <span class="navbar-text">

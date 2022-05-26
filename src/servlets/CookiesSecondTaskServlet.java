@@ -22,6 +22,8 @@ public class CookiesSecondTaskServlet extends HttpServlet {
             Cookie[] cookies = request.getCookies();
             String name = "";
             String surname = "";
+            String age = "";
+            String country = "";
 
             if (cookies!=null){
                 for (Cookie c:
@@ -32,11 +34,19 @@ public class CookiesSecondTaskServlet extends HttpServlet {
                     }else if (c.getName().equals("cookieSurname")){
                         surname = c.getValue();
                     }
+                    else if (c.getName().equals("cookieAge")){
+                        age = c.getValue();
+                    }
+                    else if (c.getName().equals("cookieCountry")){
+                        country = c.getValue();
+                    }
                 }
             }
 
             request.setAttribute("uName",name);
             request.setAttribute("uSurname", surname);
+            request.setAttribute("uAge", age);
+            request.setAttribute("uCountry", country);
             request.getRequestDispatcher("/cookiesSecondTask.jsp").forward(request, response);
 
         } catch (Exception e) {

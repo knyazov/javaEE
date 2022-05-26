@@ -29,6 +29,8 @@
             <%
                 String name = (String) request.getAttribute("uName");
                 String surname = (String) request.getAttribute("uSurname");
+                String age = (String) request.getAttribute("uAge");
+                String country = (String) request.getAttribute("uCountry");
 
             %>
             <form action="/setCookiesSecondTask" method="post">
@@ -36,7 +38,7 @@
                     NAME :
                 </label>
                 <input type="text" class="form-control" name="name"
-                       <%
+                    <%
                     if (name!=null){
                        %>
                        value="<%=name%>">
@@ -55,6 +57,41 @@
                 <%
                     }
                 %>
+
+                <label>
+                    AGE :
+                </label>
+                <label for="customRange2" class="form-label"> AGE </label>
+                <input type="range" class="form-range" min="0" max="30" id="customRange2"
+                    <%
+                    if (age!=null){
+                       %>
+                       value="<%=age%>">
+
+                <%
+                    }
+                %>
+                >
+
+                <select name="country" id="" <%
+                    if (country!=null){
+                %>
+                        value="<%=country%>">
+
+                    <%
+                        }
+                    %>>
+                    <option value="" id="kaz">
+                        KAZAKHSTAN
+                    </option>
+                    <option value="" id="usa">
+                        USA
+                    </option>
+                    <option value="" id="gb">
+                        GREAT BRITAIN
+                    </option>
+                </select>
+
 
                 <button class="btn btn-success">SET COOKIE</button>
             </form>
